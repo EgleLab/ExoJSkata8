@@ -69,6 +69,7 @@ console.log(eraseLastElement(momo));
 
 // CODE ICI
 
+
 const dodo=[15,16,17];
 let sum = 0; //important to indicate from where to start counting, define the start base
 const getTheSum = (array) => {
@@ -79,6 +80,7 @@ const getTheSum = (array) => {
     return sum;
 }
 console.log(getTheSum(dodo));
+
 //----------------------------------------------------------------------------------------------//
 
 // EXERCICE 5
@@ -183,7 +185,7 @@ const bobo = "Hello";
 const getNewString = (array) => {
   const getArray=array.split("");
   const getNoVowels=getArray.filter((element)=> { 
-    return element !== "e" && element !== "o"
+    return element !== "e" && element !== "o" //une boolean, renvoie soit true soit false, c'est une expression
   });
   const getJoined=getNoVowels.join('');
   return getJoined;
@@ -311,7 +313,7 @@ const myFatArray=array.map((element) => {
   return element.charAt(0);
 });
 return myFatArray;
-}
+};
  console.log(getArrayOfFirstLetter(myBigArray));
 
 
@@ -336,7 +338,7 @@ console.log(element); //mettre des variables existants, si non, va renvoyer inde
 });
 console.log(array[1]);
 return myCrazyArray;
-}
+};
 console.log(getTheLastLetterElement(kiki));
 
 
@@ -357,7 +359,7 @@ const getCertainStrings = (array) => {
   return element.length>=5;
 });
 return getMyStrings;
-}
+};
 
 console.log(getCertainStrings(bibi));
 
@@ -375,9 +377,16 @@ console.log(getCertainStrings(bibi));
 
 // CODE ICI
 
+const chatchat=[1, 2, 3];
 
+const getTheArrayWithSumChatChat=(array)=> {
+const getTheSum=array.reduce((accumulator, element) => {//accumulator:  It is the accumulated value from the previous iterations and starts with the initialValue if provided.
+  return element+accumulator;//The current element being processed in the array.
+}, 0); //initial value of the accumulator,  if not provided, the first element of the array is used as the initial accumulator value.
+return getTheSum;
+};
 
-//----------------------------------------------------------------------------------------------//
+console.log(getTheArrayWithSumChatChat(chatchat));
 
 // EXERCICE 17
 
@@ -391,6 +400,17 @@ console.log(getCertainStrings(bibi));
 
 // CODE ICI
 
+const zouzou=["Hello", "World"];
+const dada=["Test", "Salut"];
+
+const getAllElements=(array1, array2)=>{
+  const myArrayConcat=array1.concat(array2)
+    return myArrayConcat;
+  };           // In JavaScript, methods are functions that are associated with objects. concat() is not a call back function, just a function!
+
+console.log(getAllElements(zouzou, dada));
+
+
 //----------------------------------------------------------------------------------------------//
 
 // EXERCICE 18
@@ -401,6 +421,26 @@ console.log(getCertainStrings(bibi));
 
 // CODE ICI
 
+const laFerme=["Poulet", "Chat", "Chien", "Cheval"];
+//filter() method takes a callback function as its argument. The callback function is used to define the filtering criteria, determining which elements should be included in the new array created by filter().
+const getElementsWithE=(array)=>{
+  const getElements=array.filter((element)=>{//si tu renvoie "true" de return, filter garde l'objet, si non, il ignore
+    return element.indexOf("e") !== -1; // qd tu trouve e (ex. position3 pour chien), 3> -1, ca vaut pas 3, donc c'est vrai, donc tu me me l'envoie
+    
+    /*if (element.indexOf("e") == -1) { // -1 ici pareil que "not found", c'est indiqué dans le doc de la function
+      return false;
+    }
+    else { // e is found
+      return true;
+    }*/
+
+  });
+
+  return getElements;
+};
+
+console.log(getElementsWithE(laFerme));
+
 //----------------------------------------------------------------------------------------------//
 
 // EXERCICE 19
@@ -410,6 +450,19 @@ console.log(getCertainStrings(bibi));
 // Indice : il y a plusieurs façon de faire, soit avec un for, soit avec la méthode filter() une fois ça fait utilise la méthode sort() qui permet de trier un tableau.
 
 // CODE ICI
+
+const oiseau=[ 2, 9, 6, 5, 6];
+
+const getMeArrayOfAscendingEvens=(array)=>{
+const getMeEvens1=array.filter((element)=>{
+return element % 2 == 0;
+});
+getMeEvens1.sort((a,b)=>{
+return a-b; //ordre ascendant
+});
+return getMeEvens1; //If i omit this return, the function won't return anything
+};
+console.log(getMeArrayOfAscendingEvens(oiseau));
 
 //----------------------------------------------------------------------------------------------//
 
@@ -443,7 +496,20 @@ console.log(getCertainStrings(bibi));
 
 // CODE ICI
 
+const myPerfectString ="The quick brown fox jumps over the lazy dog";
 
+const getTheLength=(string)=>{
+  const getMyArray=myPerfectString.split(" ");
+   const getTheLength=getMyArray.map((element)=>{ //callback ici, je cree ma fonction en tant que parametre de map
+    return element.length;
+      });
+      const myArraySorted=getTheLength.sort((a,b)=>{
+        return a-b;
+      });
+
+      return getTheLength[0];
+}
+console.log(getTheLength(myPerfectString));
 
 
 
@@ -484,7 +550,24 @@ console.log(getCertainStrings(bibi));
 
 // CODE ICI
 
+let myString1="love";
+let myString2="vole";
 
+const getTheAnagramAnswer=(string1, string2)=>{ //je creer ma propre fonction, donc fleche
+  let getAnArray1=myString1.split(" ");
+  let getAnArray2=myString1.split(" "); //pas de fleche, car j'appele uniquement la fonction, qui est deja fourni dans JS
+  let myArraySorted1=getAnArray1.sort();
+  let myArraySorted2=getAnArray2.sort();
+
+  if (myArraySorted1.join("")==myArraySorted2.join("")) { 
+    return true
+      }
+      else {
+        return false
+      };
+};
+
+console.log(getTheAnagramAnswer(myString1, myString2));
 
 
 
@@ -676,3 +759,136 @@ console.log(getCertainStrings(bibi));
 
 // console.log(sortString(["Banana", "Orange", "Apple", "Mango"]))
 
+//----------------------------------------------------------------------------------------------//
+
+// EXERCICE 26
+// Écris une fonction qui étant donné deux angles d'un triangle renvoie la mesure du troisième angle.
+// ( Rappel : la somme des trois angles d'un triangle est toujours égale à 180 degrés )
+// Exemple :
+// otherAngle(30, 60) // 90
+// otherAngle(60, 60) // 60
+// Indice : Pour trouver le troisième angle, tu dois soustraire la somme des deux angles donnés à 180 degrés.
+
+// CODE ICI
+
+//----------------------------------------------------------------------------------------------//
+
+// EXERCICE 27
+// Écris une fonction qui peut déterminer si une année est une année bissextile ou non. Elle doit renvoyer true si c'est le cas, sinon false.
+// ( Rappel : Une année bissextile est une année contenant 366 jours au lieu de 365. Elle est donc plus longue qu'une année normale. Une année bissextile a lieu tous les 4 ans. )
+// Exemple :
+// isLeapYear(2020) // true
+// isLeapYear(2021) // false
+// Indice : Pour savoir ça tu peux utiliser le modulo. Si une année est divisible par 4 et que le reste de la division est égal à 0, alors c'est une année bissextile.
+
+// CODE ICI
+
+//----------------------------------------------------------------------------------------------//
+
+// EXERCICE 28
+
+// Voici un example de tableau d'animaux. Écris une fonction qui à partir d'un tableau similaire reçu en paramètre renvoie un nouveau tableau qui lui même contient deux sous-tableaux. Le premier sous-tableau doit contenir les animaux domestiques et le second les animaux sauvages. Les animaux domestiques doivent être triés par ordre alphabétique et les animaux sauvages par ordre alphabétique inversé.
+
+const animals = [
+  { name: "Panda", type: "Wild" },
+  { name: "Cat", type: "Domestic" },
+  { name: "Turtle", type: "Domestic" },
+  { name: "Dog", type: "Domestic" },
+  { name: "Crocodile", type: "Wild" },
+  { name: "Eagle", type: "Wild" },
+  { name: "Donkey", type: "Domestic" },
+  { name: "Pigeon", type: "Domestic" },
+  { name: "Monkey", type: "Wild" }
+]
+
+// Exemple :
+// sortAnimals(animals) // [["Cat", "Dog", "Donkey", "Pigeon", "Turtle"], ["Eagle", "Monkey", "Panda", "Crocodile"]]
+// Indice : Oubliez pas que tu peux créer des variables qui contiennent des tableaux vides et que tu peux ajouter des éléments à un tableau avec la méthode push(). Mais vu que tu dois analyser le tableau d'animaux pour le trier, tu dois utiliser une boucle et faire des conditions if pour savoir si l'animal est domestique ou sauvage. Et tu dois trier les animaux domestiques par ordre alphabétique et les animaux sauvages par ordre alphabétique inversé. Pour trier un tableau par ordre alphabétique tu peux utiliser la méthode sort(). Pour trier un tableau par ordre alphabétique inversé tu peux utiliser la méthode reverse().
+
+// CODE ICI
+
+
+
+
+
+//-----------------------------------------------SOLUTIONS-----------------------------------------------//
+
+// const sortAnimals = (animals) => {
+//     let tableauDomestic = []
+//     let tableauWild = []
+//     let tableauFinal = []
+//     for (let i = 0; i < animals.length; i++) {
+//         if (animals[i].type === "Domestic") {
+//         tableauDomestic.push(animals[i].name)
+//         } else {
+//         tableauWild.push(animals[i].name)
+//         }
+//     }
+//     tableauDomestic.sort()
+//     tableauWild.sort()
+//     tableauWild.reverse()
+//     tableauFinal.push(tableauDomestic)
+//     tableauFinal.push(tableauWild)
+//     return tableauFinal
+//     }
+
+// console.log(sortAnimals(animals))
+
+//----------------------------------------------------------------------------------------------//
+
+
+
+
+// EXERCICE 29
+
+// Un employé de théatre souhaite obtenir la liste de tous les sièges de sa salle principal. Dans la salle les places sont réparties comme suit : 
+// - Il y a 26 colonnes de sièges, numérotées de "1" à "26".
+// - Chaque colonne contient 100 sièges, numérotés de "1" à "100".
+
+// Complète la function theatreSieges() qui doit renvoyer un tableau où chaque sous-tableau répertorie les positions des siègnes dans une rangée. 
+// Exemple  du résultat attendu :
+// [
+    // ["1-1", "1-2", "1-3", ..., "1-99", "1-100"],
+    // ["2-1", "2-2", "2-3", ..., "2-99", "2-100"],
+    // ["3-1", "3-2", "3-3", ..., "3-99", "3-100"],
+    // ...
+    // ["26-1", "26-2", "26-3", ..., "26-99", "26-100"]
+// ]
+
+// Indice : Tu dois utiliser deux boucles imbriquées pour créer les sous-tableaux. La première boucle doit parcourir les colonnes et la seconde boucle doit parcourir les sièges de chaque colonne. 
+
+// CODE ICI
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------SOLUTIONS-----------------------------------------------//
+
+// const theatreSieges = () => {
+//     let tableau = []
+//     for (let i = 1; i <= 26; i++) {
+//         let tableau2 = []
+//         for (let j = 1; j <= 100; j++) {
+//             tableau2.push(`${i}-${j}`)
+//         }
+//         tableau.push(tableau2)
+//     }
+//     return tableau
+// }
+
+// console.log(theatreSieges())
