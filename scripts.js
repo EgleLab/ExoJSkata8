@@ -663,6 +663,14 @@ console.log(getTheArray("mySString"));
 
 // CODE ICI
 
+function createNumber(array) {
+  let array1=array.slice(0,3); //indice de fin est exclu
+  let array2=array.slice(3,6);
+  let array3=array.slice(6,10);
+  return `(${array1.join("")}) ${array2.join("")}-${array3.join("")}`
+}
+console.log(createNumber([1,2,3,4,5,6,7,8,9,0]));
+
 
 
 
@@ -699,6 +707,21 @@ console.log(getTheArray("mySString"));
 // Indice 3 : Il y a plus cas comparer les codes unicode des caractères du tableau avec les codes unicode des caractères manquants pour trouver le caractère manquant avec une condition if. Et retourner le caractère manquant avec un return et la méthode fromCharCode().
 
 // CODE ICI
+
+function findMissingLetter (array) {
+  let arrayUnicode=array.map((element)=>{
+    return element.charCodeAt()
+  })
+  for (i=0; i<arrayUnicode.length; i++) {
+    if (arrayUnicode[i] !== arrayUnicode[i + 1] - 1) {
+          return String.fromCharCode(arrayUnicode[i] + 1)
+      }
+  }
+}
+
+console.log(findMissingLetter(["a","b","c","d","f"]))
+
+
 
 
 
@@ -739,7 +762,19 @@ console.log(getTheArray("mySString"));
 
 // CODE ICI
 
-
+const sortString = (tableau) => {
+      return tableau.sort((a, b) => {
+          if (a.toLowerCase() < b.toLowerCase()) {
+              return -1
+          }
+          if (a.toLowerCase() > b.toLowerCase()) {
+              return 1
+          }
+          return 0
+      })
+  }
+  
+  console.log(sortString(["Banana", "Orange", "Apple", "Mango"]))
 
 
 
@@ -780,6 +815,10 @@ console.log(getTheArray("mySString"));
 
 // CODE ICI
 
+function getCorner (corner1, corner2) {
+return 180-(corner1+corner2);
+}
+console.log(getCorner(30,60))
 //----------------------------------------------------------------------------------------------//
 
 // EXERCICE 27
@@ -791,6 +830,15 @@ console.log(getTheArray("mySString"));
 // Indice : Pour savoir ça tu peux utiliser le modulo. Si une année est divisible par 4 et que le reste de la division est égal à 0, alors c'est une année bissextile.
 
 // CODE ICI
+
+function leapYear (year){
+  if(year%4===0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+console.log(leapYear(2021));
 
 //----------------------------------------------------------------------------------------------//
 
@@ -816,7 +864,28 @@ const animals = [
 
 // CODE ICI
 
+function sortAnimals (array) {
+  let arrayDomestic= [];
+  let arrayWild= [];
+  let arrayFinal=[];
 
+for(i=0;i<array.length; i++){
+  if (array[i].type==="Wild"){
+    arrayWild.push(array[i].name)
+  } else {
+    arrayDomestic.push(array[i].name)
+  }
+  }
+
+  arrayWild.sort();
+  arrayDomestic.sort();
+  arrayWild.reverse();
+  arrayFinal.push(arrayWild);
+  arrayFinal.push(arrayDomestic);
+  return arrayFinal;
+}
+
+console.log(sortAnimals(animals));
 
 
 
@@ -868,22 +937,19 @@ const animals = [
 
 // CODE ICI
 
+function theatreSeats () {
+  let array1=[]
+  for (let i=1;i<=26; i++){
+    let array2=[]
+      for (let j=1; j<=100; j++){
+         array2.push(`${i}-${j}`)
+      }
+    array1.push(array2)
+  }
+ return array1
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+console.log(theatreSeats())
 
 
 //-----------------------------------------------SOLUTIONS-----------------------------------------------//
@@ -901,3 +967,235 @@ const animals = [
 // }
 
 // console.log(theatreSieges())
+
+//EXERCICE 30
+/*
+Notre équipe de football participe à un tournoi dans lequel elle a joué 10 matchs.
+Les résultats du match sont notés "3:0" : le premier chiffre est le nombre de buts de **notre** équipe ; le second est celui de l'autre équipe.
+Pour connaître le score de notre équipe, nous suivons ces règles :
+- Victoire : 3pts
+- Nul : 1pt
+- Défaite : 0pt
+Étant donné un tableau avec les résultats des matchs, écris une fonction qui renverra notre score.
+Pour exemple, si ta fonction recevait le tableau ci-dessous en paramètre, tu devrais obtenir 13 points.
+["1:0", "2:0", "3:0", "4:4", "2:2", "3:3", "1:4", "2:3", "2:4", "3:3"]
+*/
+//Indice : Tu dois utiliser une boucle for pour parcourir le tableau et une condition if pour savoir si notre équipe a gagné, perdu ou fait match nul. Et tu dois ajouter les points de chaque match à une variable score qui doit être initialisée à 0. Et tu dois retourner la variable score à la fin de la fonction.
+// CODE ICI
+
+function getTheScore (array){
+  let score=0
+  for (let i=0; i<array.length; i++){
+    if (array[i][0]>array[i][2]){
+      score +=3
+    } else if 
+      (array[i][0]===array[i][2]) {
+        score+=1
+      }
+    }
+    return score
+  }
+console.log(getTheScore(["1:0", "2:0", "3:0", "4:4", "2:2", "3:3", "1:4", "2:3", "2:4", "3:3"]))
+
+
+//-----------------------------------------------SOLUTIONS-----------------------------------------------//
+// const footballPoints = (tableau) => {
+//     let score = 0
+//     for (let i = 0; i < tableau.length; i++) {
+//         if (tableau[i][0] > tableau[i][2]) {
+//             score += 3
+//         } else if (tableau[i][0] === tableau[i][2]) {
+//             score += 1
+//         }
+//     }
+//     return score
+// }
+// console.log(footballPoints(["1:0", "2:0", "3:0", "4:4", "2:2", "3:3", "1:4", "2:3", "2:4", "3:3"]))
+//----------------------------------------------------------------------------------------------//
+// EXERCICE 31
+/*
+Écris une fonction avec deux paramètres. Ces paramètres sont des tableaux contenant des nombres **stockés sous forme de chaînes de caractères**.
+Ta fonction doit renvoyer **un** tableau, où chaque élément est la somme des éléments des deux arguments correspondants (c'est-à-dire : le premier élément du tableau résultat est égal au premier élément du premier paramètre plus le premier élément du deuxième paramètre) .
+Remarque : Si un élément est vide, il doit compter pour 0.
+Ex: 
+sumArr( ["1", "2", "3"], ["2", "4", "1"] ) should return ["3", "6", "4"]
+sumArr( ["2", "7", "3"], ["2", "4", "9"] ) should return ["4", "11", "12"]
+sumArr( ["2", "7", "3", "8", "2"], ["2", "4", "9"] ) should return ["4", "11", "12", "8", "2"]
+sumArr( ["2", "5", "3"], ["2", "4", "9", "5", "5"] ) should return ["4", "9", "12", "5", "5"]
+*/
+//Indice : Tu dois utiliser une boucle for pour parcourir les tableaux et une condition if pour savoir si un élément est vide. Si un élément est vide tu dois le remplacer par 0. Et tu dois ajouter les éléments des deux tableaux à une variable tableau3 qui doit être initialisée à un tableau vide. Et tu dois retourner le tableau3 à la fin de la fonction.
+// CODE ICI
+
+function sumArray (array1, array2) {
+  finalArray=[]
+ for (let i=0; i<array1.length; i++){
+  if (array1[i]===""){
+    array1[i]=0
+  }
+  if (array2[i]===""){
+    array2[i]=0
+  }
+  finalArray.push(parseInt(array1[i]) + parseInt(array2[i]))
+ }
+return finalArray
+}
+
+console.log(sumArray(["1", "2", "3"], ["2", "4", "1"]))
+
+
+
+//-----------------------------------------------SOLUTIONS-----------------------------------------------//
+// const sumArr = (tableau1, tableau2) => {
+//     let tableau3 = []
+//     for (let i = 0; i < tableau1.length; i++) {
+//         if (tableau1[i] === "") {
+//             tableau1[i] = 0
+//         }
+//         if (tableau2[i] === "") {
+//             tableau2[i] = 0
+//         }
+//         tableau3.push(parseInt(tableau1[i]) + parseInt(tableau2[i]))
+//     }
+//     return tableau3
+// }
+
+// console.log(sumArr(["1", "2", "3"], ["2", "4", "1"]))
+// console.log(sumArr(["1", "2", "3"], ["2", "4", "1"]))
+
+//----------------------------------------------------------------------------------------------//
+
+// EXERCICE 32
+
+// Écris une fonction generatedCharacter qui crée de manière aléatoires des personnages donjon et dragon avec une classe et des noms de personnages. La fonction doit renvoyer un tableau de personnages.
+// Exemple du résultat attendu :
+// [
+//   ["Aldric", "barbarian"],
+//   ["Dolgrin", "bard"],
+//   ["Ernst", "cleric"],
+//   ["Gellius", "druid"],
+//   ["Gorstag", "fighter"]
+// ]
+
+// Indice : Tu dois créer un tableau vide et le remplir avec des tableaux qui contiennent un nom et une classe. Pour créer un nom aléatoire tu dois créer un tableau de noms et utiliser la méthode Math.random() pour récupérer un nom aléatoire dans le tableau de noms. Pour créer une classe aléatoire tu dois créer un tableau de classes et utiliser la méthode Math.random() pour récupérer une classe aléatoire dans le tableau de classes. Et tu dois faire une boucle pour créer 10 personnages.
+
+// CODE ICI
+
+let tableauName = ["Aldric", "Dolgrin", "Ernst", "Gellius", "Gorstag", "Hagar", "Jozan", "Kef", "Leve", "Morn", "Perrin", "Reed", "Rulf", "Shandar", "Taman", "Urth"]
+let tableauClass = ["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard"]
+
+function generatedCharacter () {
+  let finalArray = []
+      for (let i = 0; i < 10; i++) {
+          let array = []
+          let randomName = tableauName[Math.floor(Math.random() * tableauName.length)]
+          let randomClass = tableauClass[Math.floor(Math.random() * tableauClass.length)]
+          array.push(randomName)
+          array.push(randomClass)
+          finalArray.push(array)
+      }
+      return finalArray
+  }
+  
+  console.log(generatedCharacter())
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------SOLUTIONS-----------------------------------------------//
+// const generatedCharacter= () => {
+//     let tableau = []
+//     for (let i = 0; i < 10; i++) {
+//         let tableau2 = []
+//         let randomName = tableauName[Math.floor(Math.random() * tableauName.length)]
+//         let randomClass = tableauClass[Math.floor(Math.random() * tableauClass.length)]
+//         tableau2.push(randomName)
+//         tableau2.push(randomClass)
+//         tableau.push(tableau2)
+//     }
+//     return tableau
+// }
+
+// console.log(generatedCharacter())
+
+
+//-----------------------------------------------SOLUTIONS-----------------------------------------------//
+
+// Explication ici nous allons résoudre l'algo avec un .map(). Pourquoi ? Car le .map() permet de parcourir un tableau et de retourner un nouveau tableau avec les éléments modifiés. Donc ici nous allons parcourir le tableauName avec un .map() et pour chaque élément du tableauName nous allons créer un tableau avec un nom aléatoire et une classe aléatoire. Et nous allons retourner ce tableau. Donc le .map() va créer un nouveau tableau avec des tableaux qui contiennent un nom aléatoire et une classe aléatoire. Et nous allons stocker ce nouveau tableau dans une variable tableau. Et nous allons retourner ce tableau à la fin de la fonction.
+
+// Comme vous pouvez le voir il y a plusieurs façon de réussir à avoir le résultat attendu d'un algo. Il y a pas de bonne ou de mauvaise façon de faire. Il y a juste des façons plus optimisées que d'autres. Et il y a des façons plus simples que d'autres. Mais le plus important c'est de réussir à trouver une solution qui fonctionne. Et si vous avez réussi à trouver une solution qui fonctionne, c'est déjà très bien. 
+
+// const generatedCharacter = () => {
+//     let tableau = []
+//     tableauName.map((element) => {
+//         let tableau2 = []
+//         let randomClass = tableauClass[Math.floor(Math.random() * tableauClass.length)]
+//         tableau2.push(element)
+//         tableau2.push(randomClass)
+//         tableau.push(tableau2)
+//     })
+//     return tableau
+// }
+
+// console.log(generatedCharacter())
+
+//----------------------------------------------------------------------------------------------//
+
+// EXERCICE 33
+
+//Écrivez une fonction nommée "findMissingLetter" qui prend en paramètre un tableau d'une série de lettres (en tant que chaînes de caractères) et qui renvoie la lettre manquante de la série. Si aucune lettre n'est manquante, la fonction doit renvoyer "undefined".
+// Exemple :
+// findMissingLetter(["a","b","c","d","f"]) // "e"
+// findMissingLetter(["O","Q","R","S"]) // "P"
+
+//Indice : Oubliez pas la méthode charCodeAt() est utile pour récupérer le code unicode d'un caractère.
+//Le unicode est une norme informatique qui permet de représenter des caractères de toutes les langues du monde. Chaque caractère possède un code unicode qui lui est propre. Par exemple, le code unicode de "A" est 65, le code unicode de "B" est 66, le code unicode de "C" est 67, etc. Pour récupérer le code unicode d'un caractère vous devez utiliser la méthode charCodeAt(). Cette méthode prend en paramètre l'index du caractère dans la string. Par exemple, si vous voulez récupérer le code unicode du premier caractère de la string vous devez utiliser la méthode charCodeAt(0). Si vous voulez récupérer le code unicode du deuxième caractère de la string vous devez utiliser la méthode charCodeAt(1). Et ainsi de suite.
+
+
+
+// CODE ICI
+
+
+const findMissingLetter = (tableau) => {
+      let tableauUnicode = tableau.map((element) => {
+          return element.charCodeAt()
+      })
+      for (let i = 0; i < tableauUnicode.length; i++) {
+          if (tableauUnicode[i] !== tableauUnicode[i + 1] - 1) {
+              return String.fromCharCode(tableauUnicode[i] + 1)
+          }
+      }
+  }
+  
+  console.log(findMissingLetter(["a","b","c","d","f"]))
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------SOLUTIONS-----------------------------------------------//
+
+
+// const findMissingLetter = (tableau) => {
+//     let tableauUnicode = tableau.map((element) => {
+//         return element.charCodeAt()
+//     })
+//     for (let i = 0; i < tableauUnicode.length; i++) {
+//         if (tableauUnicode[i] !== tableauUnicode[i + 1] - 1) {
+//             return String.fromCharCode(tableauUnicode[i] + 1)
+//         }
+//     }
+// }
+
+// console.log(findMissingLetter(["a","b","c","d","f"]))
